@@ -273,4 +273,4 @@ The given steps is using __CLR Project__ in Visual Studio to create a new C++ pr
    
 Project Examples
 ----------------
-There are provided example of GA_Lib and WOA_Lib for __Sudoku__ and __TSP__ problems. For project examples, see [Project Examples](https://github.com/niksat3/General-Purpose-GA-and-WOA-Library-using-CUDA/tree/master/Images). For CPU implementation code inside the examples, choose the project that have keyword "CPU" in its name.
+There are provided example of GA_Lib and WOA_Lib for __Sudoku__ and __TSP__ problems. For project examples, see [Project Examples](https://github.com/niksat3/General-Purpose-GA-and-WOA-Library-using-CUDA/tree/master/Examples). For CPU implementation code inside the examples, choose the project that have keyword "CPU" in its name.
