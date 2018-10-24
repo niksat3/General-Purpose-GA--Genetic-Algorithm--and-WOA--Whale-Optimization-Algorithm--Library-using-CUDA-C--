@@ -9,7 +9,7 @@ This library can only support C++ and require user to install CUDA beforehand.
 
 Requirements
 ------------
-1. NVIDIA Graphics Card that is listed in CUDA Capable Hardware (See https://developer.nvidia.com/cuda-gpus) .
+1. NVIDIA Graphics Card that is listed in CUDA Capable Hardware (See [CUDA Enabled Products](https://developer.nvidia.com/cuda-gpus)).
 2. CUDA Toolkit 9.0 or more.
 3. Visual Studio 2015 or more with C++.
 
@@ -268,3 +268,9 @@ The given steps is using __CLR Project__ in Visual Studio to create a new C++ pr
 9. Open the cpp file of created class, then implement all the abstract and created method from header files. Call void _run_ to run the library process.
 
    <img src="Images/Step9.png" alt="Step 9" width=80%>
+
+   
+   
+Project Examples
+----------------
+There are provided example of GA_Lib and WOA_Lib for __Sudoku__ and __TSP__ problems. For project examples, see [Project Examples](https://github.com/niksat3/General-Purpose-GA-and-WOA-Library-using-CUDA/tree/master/Images).

@@ -1,0 +1,67 @@
+﻿  MyForm.cpp
+D:\Github\General-Purpose-GA--Genetic-Algorithm--and-WOA--Whale-Optimization-Algorithm--Library-using-CUDA-C--\Library\Include\WOA_Lib.h(72): warning C4251: 'WOA_Lib::t1': class 'std::chrono::time_point<std::chrono::steady_clock,std::chrono::steady_clock::duration>' needs to have dll-interface to be used by clients of class 'WOA_Lib'
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\chrono(994): note: see declaration of 'std::chrono::time_point<std::chrono::steady_clock,std::chrono::steady_clock::duration>'
+D:\Github\General-Purpose-GA--Genetic-Algorithm--and-WOA--Whale-Optimization-Algorithm--Library-using-CUDA-C--\Library\Include\WOA_Lib.h(73): warning C4251: 'WOA_Lib::t2': class 'std::chrono::time_point<std::chrono::steady_clock,std::chrono::steady_clock::duration>' needs to have dll-interface to be used by clients of class 'WOA_Lib'
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\chrono(994): note: see declaration of 'std::chrono::time_point<std::chrono::steady_clock,std::chrono::steady_clock::duration>'
+D:\Github\General-Purpose-GA--Genetic-Algorithm--and-WOA--Whale-Optimization-Algorithm--Library-using-CUDA-C--\Library\Include\WOA_Lib.h(91): warning C4251: 'WOA_Lib::bestFitnessPerGeneration': class 'std::vector<float,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'WOA_Lib'
+          with
+          [
+              _Ty=float
+          ]
+  D:\Github\General-Purpose-GA--Genetic-Algorithm--and-WOA--Whale-Optimization-Algorithm--Library-using-CUDA-C--\Library\Include\WOA_Lib.h(91): note: see declaration of 'std::vector<float,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=float
+          ]
+D:\Github\General-Purpose-GA--Genetic-Algorithm--and-WOA--Whale-Optimization-Algorithm--Library-using-CUDA-C--\Library\Include\WOA_Lib.h(92): warning C4251: 'WOA_Lib::averageFitnessPerGeneration': class 'std::vector<float,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'WOA_Lib'
+          with
+          [
+              _Ty=float
+          ]
+  D:\Github\General-Purpose-GA--Genetic-Algorithm--and-WOA--Whale-Optimization-Algorithm--Library-using-CUDA-C--\Library\Include\WOA_Lib.h(91): note: see declaration of 'std::vector<float,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=float
+          ]
+  userClass.cpp
+D:\Github\General-Purpose-GA--Genetic-Algorithm--and-WOA--Whale-Optimization-Algorithm--Library-using-CUDA-C--\Library\Include\WOA_Lib.h(72): warning C4251: 'WOA_Lib::t1': class 'std::chrono::time_point<std::chrono::steady_clock,std::chrono::steady_clock::duration>' needs to have dll-interface to be used by clients of class 'WOA_Lib'
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\chrono(994): note: see declaration of 'std::chrono::time_point<std::chrono::steady_clock,std::chrono::steady_clock::duration>'
+D:\Github\General-Purpose-GA--Genetic-Algorithm--and-WOA--Whale-Optimization-Algorithm--Library-using-CUDA-C--\Library\Include\WOA_Lib.h(73): warning C4251: 'WOA_Lib::t2': class 'std::chrono::time_point<std::chrono::steady_clock,std::chrono::steady_clock::duration>' needs to have dll-interface to be used by clients of class 'WOA_Lib'
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\chrono(994): note: see declaration of 'std::chrono::time_point<std::chrono::steady_clock,std::chrono::steady_clock::duration>'
+D:\Github\General-Purpose-GA--Genetic-Algorithm--and-WOA--Whale-Optimization-Algorithm--Library-using-CUDA-C--\Library\Include\WOA_Lib.h(91): warning C4251: 'WOA_Lib::bestFitnessPerGeneration': class 'std::vector<float,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'WOA_Lib'
+          with
+          [
+              _Ty=float
+          ]
+  D:\Github\General-Purpose-GA--Genetic-Algorithm--and-WOA--Whale-Optimization-Algorithm--Library-using-CUDA-C--\Library\Include\WOA_Lib.h(91): note: see declaration of 'std::vector<float,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=float
+          ]
+D:\Github\General-Purpose-GA--Genetic-Algorithm--and-WOA--Whale-Optimization-Algorithm--Library-using-CUDA-C--\Library\Include\WOA_Lib.h(92): warning C4251: 'WOA_Lib::averageFitnessPerGeneration': class 'std::vector<float,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'WOA_Lib'
+          with
+          [
+              _Ty=float
+          ]
+  D:\Github\General-Purpose-GA--Genetic-Algorithm--and-WOA--Whale-Optimization-Algorithm--Library-using-CUDA-C--\Library\Include\WOA_Lib.h(91): note: see declaration of 'std::vector<float,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=float
+          ]
+userClass.cpp(54): warning C4244: '=': conversion from 'float' to 'short', possible loss of data
+userClass.cpp(71): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+userClass.cpp(72): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+userClass.cpp(73): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+userClass.cpp(75): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+userClass.cpp(76): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+userClass.cpp(77): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+userClass.cpp(90): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+userClass.cpp(92): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\utility(200): warning C4244: 'initializing': conversion from 'float' to 'short', possible loss of data
+  userClass.cpp(52): note: see reference to function template instantiation 'std::pair<short,float>::pair<float,short,void,0>(std::pair<float,short> &&) noexcept' being compiled
+  userClass.cpp(52): note: see reference to function template instantiation 'std::pair<short,float>::pair<float,short,void,0>(std::pair<float,short> &&) noexcept' being compiled
+  Generating Code...
+  MyForm.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
+     Creating library D:\Github\General-Purpose-GA--Genetic-Algorithm--and-WOA--Whale-Optimization-Algorithm--Library-using-CUDA-C--\Examples\WOA\tryTSPWOA\x64\Debug\tryTSPWOA.lib and object D:\Github\General-Purpose-GA--Genetic-Algorithm--and-WOA--Whale-Optimization-Algorithm--Library-using-CUDA-C--\Examples\WOA\tryTSPWOA\x64\Debug\tryTSPWOA.exp
+  tryTSPWOA.vcxproj -> D:\Github\General-Purpose-GA--Genetic-Algorithm--and-WOA--Whale-Optimization-Algorithm--Library-using-CUDA-C--\Examples\WOA\tryTSPWOA\x64\Debug\tryTSPWOA.exe
+  tryTSPWOA.vcxproj -> D:\Github\General-Purpose-GA--Genetic-Algorithm--and-WOA--Whale-Optimization-Algorithm--Library-using-CUDA-C--\Examples\WOA\tryTSPWOA\x64\Debug\tryTSPWOA.pdb (Partial PDB)
