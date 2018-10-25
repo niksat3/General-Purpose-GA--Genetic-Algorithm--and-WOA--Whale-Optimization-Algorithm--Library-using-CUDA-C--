@@ -288,19 +288,19 @@ public:
 ```
 
 After giving an interface of derived class from `GA_Lib<bool>`, the next step is to implement all the methods that we created inside header file. For the constructor parameter, we will use:
-- generation = 100
-- size = 5
-- chromosomePerGeneration = 10
-- mutationRate = 0.15
-- crossoverRate = 0.35
-- crossoverType = CrossoverType::OnePointCrossover
-- mutationType = MutationType::SwapMutation
-- selectionType = SelectionType::RankSelection
+- _generation_ = 100
+- _size_ = 5
+- _chromosomePerGeneration_ = 10
+- _mutationRate_ = 0.15
+- _crossoverRate_ = 0.35
+- _crossoverType_ = _CrossoverType::OnePointCrossover_
+- _mutationType_ = _MutationType::SwapMutation_
+- _selectionType_ = _SelectionType::RankSelection_
 
 <br>For the code inside cpp file, here is the things that will be done inside all the methods:
-- Constructor: call library constructor and set all parameter, call void run, then print the best chromosome.
-- doInitialization: fill all gens of chromosomes inside class with number 1 or 0. Since pointer can't be replaced, you need to get the address of chromosome with ```getChromosome()```.
-- doFitnessCheck: fill the fitness of chromosomes inside class with _y_ function as mentioned above. To make it easier, the implementation is done in CPU.
+- _Constructor_: call library constructor and set all parameter, call void run, then print the best chromosome.
+- _doInitialization_: fill all gens of chromosomes inside class with number 1 or 0. Since pointer can't be replaced, you need to get the address of chromosome with ```getChromosome()```.
+- _doFitnessCheck_: fill the fitness of chromosomes inside class with _y_ function as mentioned above. To make it easier, the implementation is done in CPU.
 And here is the complete code inside cpp file:<br>
 ```
 tryFunc::tryFunc() : GA_Lib((long)100,5,10,0.15,0.35,
