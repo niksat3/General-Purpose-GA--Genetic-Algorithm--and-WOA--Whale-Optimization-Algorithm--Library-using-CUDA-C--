@@ -273,4 +273,80 @@ The given steps is using __CLR Project__ in Visual Studio to create a new C++ pr
    
 Project Examples
 ----------------
-There are provided example of GA_Lib and WOA_Lib for __Sudoku__ and __TSP__ problems. For project examples, see [Project Examples](https://github.com/niksat3/General-Purpose-GA-and-WOA-Library-using-CUDA/tree/master/Examples). For CPU implementation code inside the examples, choose the project that have keyword "CPU" in its name.
+For easier understanding, let's start with making a new simple project to solve a given function: `y = 5 + 10x -x<sup>2</sup>`. The given problem will be solved using GA_Lib. The representation of chromosomes will be _boolean_ with _size_ = 5, as the representation of decimal number (max=32) that's created into 5 representation binary (0 or 1). The goal is to find the maximum value of _x_, with y act as fitness value of 1 chromosome.
+
+Here is the code interface inside header class:<br>
+```
+#include <GA_Lib.h>
+
+class tryFunc : GA_Lib<bool> {
+public:
+	tryFunc();
+	void doInitialization();
+	void doFitnessCheck(long chromosomeAmount);
+};
+```
+
+After giving an interface of derived class from `GA_Lib<bool>`, the next step is to implement all the methods that we created inside header file. For the constructor parameter, we will use:
+- generation = 100
+- size = 5
+- chromosomePerGeneration = 10
+- mutationRate = 0.15
+- crossoverRate = 0.35
+- crossoverType = CrossoverType::OnePointCrossover
+- mutationType = MutationType::SwapMutation
+- selectionType = SelectionType::RankSelection
+For the code inside cpp file, here is the things that will be done inside all the methods:
+- Constructor: call library constructor and set all parameter, call void run, then print the best chromosome.
+- doInitialization: fill all gens of chromosomes inside class with number 1 or 0. Since pointer can't be replaced, you need to get the address of chromosome with ```getChromosome()```.
+- doFitnessCheck: fill the fitness of chromosomes inside class with _y_ function as mentioned above. To make it easier, the implementation is done in CPU.
+And here is the complete code inside cpp file:<br>
+```
+tryFunc::tryFunc() : GA_Lib((long)100,5,10,0.15,0.35,
+	CrossoverType::OnePointCrossover, MutationType::SwapMutation, SelectionType::RankSelection)
+{
+	run();
+	bool* bestChromosome = getBestChromosome();
+	printf("Best Chromosome: ");
+	for (size_t i = 0; i < getSize(); i++) {
+		printf("%i ", bestChromosome[i]);
+	}
+	printf("\n");
+}
+
+void tryFunc::doInitialization() {
+	bool* chromosomeTemp = getChromosome();
+	for (int i = 0; i < getChromosomePerGeneration(); i++)
+	{
+		for (int j = 0; j < getSize(); j++) {
+			chromosomeTemp[i*getSize()+j] = randomInt(1);
+		}
+	}
+	setChromosome(chromosomeTemp);
+}
+
+void tryFunc::doFitnessCheck(long chromosomeAmount) {
+	bool* chromosomeTemp = getChromosome();
+	float* fitnessTemp = getFitness();
+	for (int i = 0; i < chromosomeAmount; i++)
+	{
+		float score = 0.0f;
+		for (int j = 0; j < 5; j++)
+		{
+			score += (chromosomeTemp[i*getSize() + j] == 0 ? 0 : powf(2,j));
+		}
+		fitnessTemp[i] = 5 + 10 * score - (score*score);
+	}
+}
+```
+
+After the class has been filled in with implementation code, the process will run in main project by __including__ class header and calls `tryFunc try`. And here is the result:<br>
+```
+Operation Finished..
+Total Execution Time: 0.263000 s
+Operation finished in generation 100...
+Best Fitness in last generation: 30.000000
+Best Chromosome: 1 0 1 0 0
+```
+<br><br>
+There are other provided examples of GA_Lib and WOA_Lib for __Sudoku__ and __TSP__ problems. For project examples, see [Project Examples](https://github.com/niksat3/General-Purpose-GA-and-WOA-Library-using-CUDA/tree/master/Examples). For CPU implementation code inside the examples, choose the project that have keyword "CPU" in its name.
