@@ -300,7 +300,8 @@ After giving an interface of derived class from `GA_Lib<bool>`, the next step is
 <br>For the code inside cpp file, here is the things that will be done inside all the methods:
 - _Constructor_: call library constructor and set all parameter, call void run, then print the best chromosome.
 - _doInitialization_: fill all gens of chromosomes inside class with number 1 or 0. Since pointer can't be replaced, you need to get the address of chromosome with ```getChromosome()```.
-- _doFitnessCheck_: fill the fitness of chromosomes inside class with _y_ function as mentioned above. To make it easier, the implementation is done in CPU.
+- _doFitnessCheck_: fill the fitness of chromosomes inside class with _y_ function as mentioned above. To make it easier, the implementation is done in CPU.<br>
+
 And here is the complete code inside cpp file:<br>
 ```
 tryFunc::tryFunc() : GA_Lib((long)100,5,10,0.15,0.35,
