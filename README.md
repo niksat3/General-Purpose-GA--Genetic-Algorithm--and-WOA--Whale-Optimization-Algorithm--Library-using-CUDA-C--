@@ -349,5 +349,5 @@ Operation finished in generation 100...
 Best Fitness in last generation: 30.000000
 Best Chromosome: 1 0 1 0 0
 ```
-<br>
+
 There are other provided examples of GA_Lib and WOA_Lib for __Sudoku__ and __TSP__ problems. For project examples, see [Project Examples](https://github.com/niksat3/General-Purpose-GA-and-WOA-Library-using-CUDA/tree/master/Examples). For CPU implementation code inside the examples, choose the project that have keyword "CPU" in its name.
