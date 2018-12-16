@@ -1,8 +1,3 @@
-/*-------------------------------------------------------------------------------------------------*/
-/*                                                 RULES:										   */
-/*							1. chromosomePerGeneration can't be odd number						   */
-/*-------------------------------------------------------------------------------------------------*/
-
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 #include "GA_Lib.h"
@@ -701,13 +696,13 @@ void GA_Lib<T>::run() {
 	t1 = high_resolution_clock::now();
 	doInitialize();
 	while (!checkStoppingCriteria()) {
-		//if (currentGeneration % 100 == 0) {
-			//t2 = high_resolution_clock::now();
+		/*if (currentGeneration % 100 == 0) {
+			t2 = high_resolution_clock::now();
 
-			//auto duration = duration_cast<milliseconds>(t2 - t1).count();
-			//totalTime = (float)duration / 1000.00;
-			//printf("%f\n", totalTime);
-		//}
+			auto duration = duration_cast<milliseconds>(t2 - t1).count();
+			totalTime = (float)duration / 1000.00;
+			printf("%f\n", totalTime);
+		*/}
 		currentGeneration++;
 		doLoopInitialization();
 		doGPUOperation();
@@ -822,40 +817,20 @@ void GA_Lib<T>::doInitialize() {
 
 template <typename T>
 void GA_Lib<T>::doLoopInitialization() {
-	//system("CLS");
-	//printf("Iteration %i...\n", currentGeneration);
-	//printf("Looping init\n");
-	//printf("f: %f \n", fitness[0]);
-	//printf("c: %i \n", chromosome[0]);
 };
 
 template <typename T>
 void GA_Lib<T>::doGPUOperation() {
-	//printf("Starting GPU Operation..\n");
-
-	//printf("S GPU OP\n");
-	//printf("f: %f \n", fitness[0]);
-	//printf("c: %i \n", chromosome[0]);
 	doGeneticOperation();
 	cudaDeviceSynchronize();
-	//printf("E GPU OP\n");
-	//printf("f: %f \n", fitness[0]);
-	//printf("c: %i \n", chromosome[0]);
 	this->doFitnessCheck(chromosomePerGeneration * 2);
 	cudaDeviceSynchronize();
-	//printf("E Fitness Check\n");
-	//printf("f: %f \n", fitness[0]);
-	//printf("c: %i \n", chromosome[0]);
 	doSortingAndAveraging(chromosomePerGeneration * 2);
 	cudaDeviceSynchronize();
-	//system("pause");
-
-	//printf("Finished Starting GPU Operation..\n");
 };
 
 template <typename T>
 void GA_Lib<T>::doGeneticOperation() {
-	//printf("Crossover And mutation..\n");
 	float randVal;
 	long currentChromosomeLoop = 0;
 	int chromosomeCount1 = 0, chromosomeCount2 = 0;
@@ -931,7 +906,6 @@ void GA_Lib<T>::doGeneticOperation() {
 	cudaFree(parent1);
 	cudaFree(parent2);
 	if (mutationType == 0) cudaFree(randChromosome);
-	//printf("Finished Crossover And mutation..\n");
 };
 
 template <typename T>
@@ -1007,7 +981,6 @@ long GA_Lib<T>::doSelection(long exceptChromosome) {
 
 template <typename T>
 void GA_Lib<T>::doSortingAndAveraging(long fitnessSize) {
-	//printf("Sorting And Averaging..\n");
 
 	int *resultedIndexChromosome;
 	cudaMallocManaged(&resultedIndexChromosome, sizeof(int)*fitnessSize);
@@ -1029,34 +1002,19 @@ void GA_Lib<T>::doSortingAndAveraging(long fitnessSize) {
 
 	numBlocks = 1;
 	threadPerBlocks = fitnessSize;
-	//printf("S Sorting\n");
-	//printf("f: %f \n", fitness[0]);
-	//printf("c: %i \n", chromosome[0]);
 	assignChromosome<T> << <numBlocks, threadPerBlocks, sizeof(T) * size * fitnessSize>> > (resultedIndexChromosome, chromosome, size);
 	cudaDeviceSynchronize();
-	//printf("E Sorting\n");
-	//printf("f: %f \n", fitness[0]);
-	//printf("c: %i \n", chromosome[0]);
 
 	cudaFree(resultedIndexChromosome);
-	//printf("Finished Sorting and Averaging..\n");
 };
 
 template <typename T>
 void GA_Lib<T>::doSaveHistory() {
-	//printf("Saving History...\n");
-	//printf("S Save History\n");
-	//printf("f: %f \n", fitness[0]);
-	//printf("c: %i \n", chromosome[0]);
 	this->bestFitnessPerGeneration.push_back(fitness[0]);
 	this->averageFitnessPerGeneration.push_back(this->averageFitnessThisGeneration);
 	for (int i = 0; i < size; i++) {
 		bestChromosome[i] = chromosome[i];
 	}
-	//printf("E Save History\n");
-	//printf("f: %f \n", fitness[0]);
-	//printf("c: %i \n", chromosome[0]);
-	//printf("Finished...\n");
 };
 
 template <typename T>
@@ -1081,14 +1039,14 @@ void GA_Lib<T>::doPrintResults() {
 template <typename T>
 bool GA_Lib<T>::checkStoppingCriteria() {
 	//If in 10000 generation the best fitness is the same, stop the process
-	//if (lastBestFitness == fitness[0]) {
-		//if (counterStop >= 100000) {
-			//printf("Best Fitness this generation: %f\n", lastBestFitness);
-			//return true;
-		//}
-		//counterStop++;
-	//}
-	//else counterStop = 0;
+	if (lastBestFitness == fitness[0]) {
+		if (counterStop >= 100000) {
+			printf("Best Fitness this generation: %f\n", lastBestFitness);
+			return true;
+		}
+		counterStop++;
+	}
+	else counterStop = 0;
 	lastBestFitness = fitness[0];
 
 	if (currentGeneration == -1) return false;
@@ -1100,93 +1058,3 @@ bool GA_Lib<T>::checkStoppingCriteria() {
 	return false;
 };
 #pragma endregion
-/*
-class tryTSPGACPU : public GA_Lib<short> {
-
-public:
-	float* coord;
-	tryTSPGACPU() : GA_Lib((long)10, 38, 30, 0.15, 0.35,
-		CrossoverType::Order1Crossover, MutationType::InversionMutation, SelectionType::RankSelection) {
-		run();
-		short* bestChromosome = getBestChromosome();
-		printf("City Index: %i", bestChromosome[0]);
-		for (int i = 1; i < getSize(); i++) {
-			printf(",%i", bestChromosome[i]);
-		}
-		printf("\n\n");
-	}
-
-	void doInitialization() {
-		coord = new float[2 * getSize()];
-		short* newChromosome = this->getChromosome();
-
-		//read file
-		ifstream file("D:\\Materi Kuliah\\Semester 7\\[TA]\\[VERSION 2]\\[CUDA_LIB]\\TSP txt\\dj38.tsp.txt");
-		string line;
-		bool startRead = false;
-		int i = 0;
-		while (getline(file, line)) {
-			stringstream linestream(line);
-			if (startRead) {
-				int temp;
-				float c1, c2;
-				linestream >> temp >> c1 >> c2;
-				coord[i] = c1;
-				coord[i + 1] = c2;
-				i += 2;
-			}
-			if (line == "NODE_COORD_SECTION") startRead = true;
-		}
-		for (int i = 0; i < getChromosomePerGeneration(); i++) {
-			short* a = new short[getSize()];
-			randomChromosome(a);
-			for (int j = 0; j < getSize(); j++) {
-				newChromosome[i * getSize() + j] = a[j];
-			}
-			delete a;
-		}
-		setChromosome(newChromosome);
-	}
-
-	void doFitnessCheck(long chromosomeAmount) {
-		short* chromosomeTemp = this->getChromosome();
-		float* fitnessTemp = this->getFitness();
-		for (int i = 0; i < chromosomeAmount; i++) {
-			cudaDeviceSynchronize();
-			float nilai = 0;
-			int i_d = i*getSize();
-			for (int j = 1; j < getSize(); j++) {
-				int xDist = coord[chromosomeTemp[i_d + j] * 2] - coord[chromosomeTemp[i_d + (j - 1)] * 2];
-				int yDist = coord[(chromosomeTemp[i_d + j] * 2) + 1] - coord[(chromosomeTemp[i_d + (j - 1)] * 2) + 1];
-				nilai += (sqrtf((xDist*xDist) + (yDist*yDist)));
-			}
-			int xDist = coord[chromosomeTemp[i_d] * 2] - coord[chromosomeTemp[i_d + (getSize() - 1)] * 2];
-			int yDist = coord[(chromosomeTemp[i_d] * 2) + 1] - coord[(chromosomeTemp[i_d + (getSize() - 1)] * 2) + 1];
-			nilai += (sqrtf((xDist*xDist) + (yDist*yDist)));
-			fitnessTemp[i] = 99999.0f - nilai;
-		}
-		setFitness(fitnessTemp);
-		//callFitnessCheckGPU(81, chromosomeTemp, fitnessTemp, chromosomeAmount);
-	};
-
-	void randomChromosome(short* newChromosome) {
-		short* temp = new short[getSize()];
-		for (short i = 0; i < getSize(); i++) temp[i] = i;
-		for (short i = 0; i < 300; i++) {
-			short index1 = randomInt(getSize() - 1), index2 = randomInt(getSize() - 1);
-			short temp2 = temp[index1];
-			temp[index1] = temp[index2];
-			temp[index2] = temp2;
-		}
-		for (int i = 0; i < getSize(); i++) {
-			newChromosome[i] = temp[i];
-		}
-		delete temp;
-	};
-};
-
-int main() {
-	tryTSPGACPU try1;
-	system("pause");
-}
-*/
